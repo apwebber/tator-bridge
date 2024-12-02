@@ -1,5 +1,4 @@
 import datetime
-import io
 import os
 import requests
 import tator
@@ -13,7 +12,7 @@ def get_tator_url() -> str:
     return os.environ["tator_url"]
 
 
-def get_token() -> str:
+def get_token() -> str: 
     return os.environ["tator_token"]
 
 def get_tator_api() -> tator.api:
