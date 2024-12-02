@@ -1,13 +1,19 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import Response
-
+from slowapi import Limiter, _rate_limit_exceeded_handler
+from slowapi.util import get_remote_address
+from slowapi.errors import RateLimitExceeded
+    
 from tator_bridge.helpers import get_media
 
+limiter = Limiter(key_func=get_remote_address)
 app = FastAPI()
-
+app.state.limiter = limiter
+app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
 
 @app.get("/media/{media_id}")
-def serve_tator_media(media_id: str) -> Response:
+@limiter.limit("10/minute")
+def serve_tator_media(request: Request, media_id: str) -> Response:
     """
     Serves the image from tator with the given ID.
 

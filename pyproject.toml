@@ -5,13 +5,10 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
-
     "cachier>=3.1.2",
-
     "fastapi>=0.115.5",
-
     "python-dotenv>=1.0.1",
-
+    "slowapi>=0.1.9",
     "tator>=1.3.16",
 ]
 
