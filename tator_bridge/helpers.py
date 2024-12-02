@@ -11,7 +11,6 @@ IMAGE_CACHE_DAYS = 30
 def get_tator_url() -> str:
     return os.environ["tator_url"]
 
-
 def get_token() -> str: 
     return os.environ["tator_token"]
 
@@ -31,7 +30,6 @@ def get_media_url(media_id: int) -> str:
     images = [i for i in images if i.mime == 'image/jpeg']
     return images[0].path
 
-@cachier(stale_after=datetime.timedelta(days=IMAGE_CACHE_DAYS))
 def get_media(media_id: int) -> bytes:
     url = get_media_url(media_id)
     return requests.get(url).content
