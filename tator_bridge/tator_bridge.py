@@ -7,7 +7,19 @@ app = FastAPI()
 
 
 @app.get("/media/{media_id}")
-def serve_tator_media(media_id: str):
+def serve_tator_media(media_id: str) -> Response:
+    """
+    Serves the image from tator with the given ID.
+
+    Args:
+        media_id (str): The media ID.
+
+    Raises:
+        HTTPException: If the media with that ID wasn't found.
+
+    Returns:
+        Response: The image.
+    """
     try:
         im = get_media(media_id)
     except ValueError:
