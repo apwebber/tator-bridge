@@ -7,7 +7,6 @@ from cachier import cachier
 from dotenv import load_dotenv
 
 PRESIGNED_VAL_SECONDS = 43200
-IMAGE_CACHE_DAYS = 30
 
 load_dotenv()
 
